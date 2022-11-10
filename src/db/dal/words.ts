@@ -17,6 +17,11 @@ interface geyAllParams{
 
 const getAll = (limit = 20,offset = 1)=>{
   return StarDict.findAll({
+    where:{
+      phonetic:{
+        [Op.not]:''
+      }
+    },
     order:[
       ['bnc','DESC']
     ],
@@ -30,6 +35,9 @@ const getAllByKeyword = ({wordLike,limit = 20,offset = 1}:geyAllParams)=>{
     where:{
       word:{
         [Op.like]:`${wordLike}%`
+      },
+      phonetic:{
+        [Op.not]:''
       }
     },
     order:[
@@ -45,13 +53,16 @@ const getWordsAndDefinition = (wordLike)=>{
     where:{
       word:{
         [Op.like]:`${wordLike}%`
+      },
+      phonetic:{
+        [Op.not]:''
       }
     },
     order:[
       ['bnc','DESC']
     ],
     limit:20,
-    attributes:['word','translation']
+    attributes:['word','phonetic','translation']
   });
 }
 

@@ -12,9 +12,6 @@ const getList = async (keyword?:string) => {
 };
 
 const getOption = async (keyword?:string) => {
-  if(!keyword) {
-    return {success:false}
-  }
   return await getWordsAndDefinition(keyword)
 }
 

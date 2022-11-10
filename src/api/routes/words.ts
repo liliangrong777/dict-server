@@ -4,7 +4,7 @@ const words = new Router({
   prefix: '/words'
 });
 
-words.get('/',async (ctx) => {
+words.get('/list',async (ctx) => {
   const {keyword} = ctx.query
   const res = await wordController.getList(keyword as string)
   ctx.body = res
@@ -16,7 +16,7 @@ words.get('/option',async (ctx)=>{
   ctx.body = res
 })
 
-words.get('/:word', async (ctx) => {
+words.get('/detail/:word', async (ctx) => {
   const {word} = ctx.params;
   const res = await wordController.getDetail(word);
   ctx.body = res;

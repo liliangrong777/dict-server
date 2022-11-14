@@ -1,15 +1,15 @@
-import type { IOptions, IWord } from '../../db/interface/words';
+import type { IOptions, IWordResult } from '../../db/interface/words';
 import * as wordServices from '../../db/services/words';
-import { ErrorResult, SuccessResult } from '../../util/Result';
+import { ErrorResult, SuccessResult } from '../../utils/Result';
 
 const getDetail = async (word:string) => {
   const data = await wordServices.getDetail(word);
-  return new SuccessResult<IWord>(data,200)
+  return new SuccessResult<IWordResult>(data,200)
 };
 
 const getList = async (keyword?:string) => {
   const data = await wordServices.getList(keyword)
-  return new SuccessResult<IWord[]>(data,200)
+  return new SuccessResult<IWordResult[]>(data,200)
 };
 
 const getOption = async (keyword:string) => {

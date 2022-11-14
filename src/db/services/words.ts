@@ -1,7 +1,13 @@
+import { getResemble } from '../../utils/words';
 import { getAll, getAllByKeyword, getByWord, getWordsAndDefinition } from '../dal/words';
+import type { IWordResult } from '../interface/words';
 
 const getDetail = async (word:string) => {
-  return await getByWord(word);
+  const detail = await getByWord(word);
+  const result:IWordResult | null = detail?.get() ?? null
+  if(!result) return null;
+  result.resemble = getResemble(word)
+  return result
 };
 
 const getList = async (keyword?:string) => {

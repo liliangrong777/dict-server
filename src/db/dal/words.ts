@@ -1,4 +1,5 @@
 import { Op } from 'sequelize';
+import sequelize from '../init';
 import StarDict from '../modals/words';
 
 const getByWord = (word:string) => {
@@ -23,7 +24,7 @@ const getAll = (limit = 20,offset = 1)=>{
       }
     },
     order:[
-      ['bnc','DESC']
+      [sequelize.fn('length',sequelize.col('tag')),'DESC']
     ],
     limit,
     offset
@@ -41,7 +42,7 @@ const getAllByKeyword = ({wordLike,limit = 20,offset = 1}:geyAllParams)=>{
       }
     },
     order:[
-      ['bnc','DESC']
+      [sequelize.fn('length',sequelize.col('tag')),'DESC']
     ],
     limit,
     offset
@@ -59,7 +60,7 @@ const getWordsAndDefinition = (wordLike)=>{
       }
     },
     order:[
-      ['bnc','DESC']
+      [sequelize.fn('length',sequelize.col('tag')),'DESC']
     ],
     limit:20,
     attributes:['word','phonetic','translation']
